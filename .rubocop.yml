@@ -6,7 +6,7 @@ AllCops:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Layout/LineLength:
+Metrics/LineLength:
   Max: 130
 
 Lint/Debugger:
