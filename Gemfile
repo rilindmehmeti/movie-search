@@ -22,6 +22,7 @@ gem "jbuilder", "~> 2.7"
 gem "bootsnap", ">= 1.4.2", require: false
 
 gem "dotenv-rails"
+gem "httparty"
 gem "rubocop"
 
 group :development, :test do
