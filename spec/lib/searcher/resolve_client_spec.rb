@@ -1,5 +1,5 @@
 describe Searcher::ResolveClient do
-  subject { described_class.new }
+  subject { described_class.new(adapter: nil) }
 
   shared_examples "no errors" do
     it "doesn't throw errors" do
@@ -7,9 +7,16 @@ describe Searcher::ResolveClient do
     end
   end
 
+  shared_examples "errors" do
+    it "doesn't throw errors" do
+      expect { subject }.to raise_error(ArgumentError)
+    end
+  end
+
   describe ".initialize" do
     context "without params" do
-      include_examples "no errors"
+      subject { described_class.new }
+      include_examples "errors"
     end
 
     context "with adapter param" do

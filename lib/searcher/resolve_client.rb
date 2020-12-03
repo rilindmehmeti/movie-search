@@ -2,8 +2,8 @@ module Searcher
   class ResolveClient
     attr_reader :adapter, :client
 
-    def initialize(adapter: :httparty)
-      @adapter = adapter.to_sym
+    def initialize(adapter:)
+      @adapter = adapter.try(:to_sym)
       @client = @adapter.nil? ? default_client : set_client
     end
 
