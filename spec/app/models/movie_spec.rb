@@ -1,7 +1,7 @@
 describe Movie do
   let(:title)      { "MyTitle" }
   let(:year)       { 2020 }
-  let(:poster_url) { "https://m.media-amazon.com/images/M/MV5BODg0YTM4NzEtZDQyNi00M2MzLWE3MDQtNjcxNTkxNWM0NzNhXkEyXkFqcGdeQXVyMjM5NzU3OTM@._V1_SX300.jpg" }
+  let(:poster_url) { "PosterUrl" }
   let(:params)     { { title: title, year: year, poster_url: poster_url } }
 
   subject { described_class.new(params) }
