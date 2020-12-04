@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This projects implements an external service(http://www.omdbapi.com) to search for movies for a given input from user. The front end uses `React`, there is only one api endpoint which is used to search for movies. 
 
-Things you may want to cover:
+The `api` searches in the external service, retrieves the information for movies, maps that information with `Movie` model and serves it in the front end.
 
-* Ruby version
+The external service usage logic can be found under `lib/searcher`, where is implemented `OMBD` searcher, under `lib/searcher/error` are implemented errors related with searcher. The folder `lib/searcher/clients` holds implementation for clients that are used to handle http requests with the external service.
 
-* System dependencies
+The business logic for the application is placed under `app/lib`, where an middleware layer is used to interact with api endpoints and data.
 
-* Configuration
+For unit tests `RSpec` is used, and respective tests can be found under `spec` folder. As well the projects implements `Rubocop` as linter. 
 
-* Database creation
+#### Requirements
+* Ruby version `2.6.5`
+* Bundler version `2.1.4`
+* Yarn version `1.22.4`
 
-* Database initialization
+#### Installation
+* Run `bundle install`
+* Run `yarn install`
 
-* How to run the test suite
+#### Running tests
+* Run `bundle exec rspec`
+* Run `bundle exec rubocop`
 
-* Services (job queues, cache servers, search engines, etc.)
+#### Running Application
+* Run `rails server`
 
-* Deployment instructions
-
-* ...
+#### Using the service (locally)
+* Visit `localhost:3000`
+* Fill in the search input with at least `4 letter` search term
+* Hit search
