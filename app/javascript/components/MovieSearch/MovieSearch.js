@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import SearchHeader from "./SearchHeader/SearchHeader";
 import SearchResults from "./SearchResults/SearchResults";
+import InformationMessage from "./InformationMessage/InformationMessage";
 
-const movies = new Array(100).fill({
-  title: "Game of Thrones",
-  year: "2010",
-  poster_url: "https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg"
-})
+const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+const headers = { "Content-Type": "application/json", "X-CSRF-Token": csrf }
+const HANDLED_ERROR_STATUS = 422;
 
 class MovieSearch extends Component {
   state = {
     searchTerm: "",
-    movies: movies
+    displayError: false,
+    errorMessage: "",
+    movies: []
   }
 
   searchTermUpdateHandler = (searchTerm) => {
@@ -19,14 +22,23 @@ class MovieSearch extends Component {
   }
 
   searchClickHandler = () => {
-    alert("You Searched!");
+    axios.post("/api/v1/movies/search", {search_term: this.state.searchTerm}, { headers })
+      .then(response => {
+        this.setState({ movies: response.data.movies, displayError: false})
+      })
+      .catch(error => {
+        // Handle 422 errors
+        if(error.response.status == HANDLED_ERROR_STATUS) {
+          this.setState({errorMessage: error.response.data.error, displayError: true });
+        }
+      });
   }
 
   render() {
     return(
       <>
         <SearchHeader searchTerm={this.state.searchTerm} searchTermUpdated={this.searchTermUpdateHandler} searchClick={this.searchClickHandler}/>
-        <SearchResults movies={this.state.movies} />
+        { !this.state.displayError ? <SearchResults movies={this.state.movies} /> : <InformationMessage message={this.state.errorMessage} />}
       </>
     )
   }
