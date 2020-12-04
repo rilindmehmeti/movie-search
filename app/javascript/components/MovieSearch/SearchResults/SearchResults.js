@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
+import MovieCard from "./MovieCard/MovieCard";
 
-class SearchResults extends Component {
-  render() {
+const SearchResults = (props) => {
+    let { movies } = props;
+    const movieCards = movies.map((movie, index) => <MovieCard key={index} {...movie} />)
     return(
-      <div>
-        Results GO Here....
+      <div className="container movies-container">
+        <div className="row">
+          {movieCards}
+        </div>
       </div>
-    )
-  }
+    );
 }
 
 export default SearchResults;
