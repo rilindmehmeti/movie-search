@@ -1,0 +1,21 @@
+.search-header {
+  background-color: #4dd0e1;
+  padding: 50px 0;
+
+  .search-input {
+    border: none;
+  }
+
+  .search-button {
+    transition: .4s all ease-in-out;
+    background-color: #009faf;
+    border: none;
+    color: white;
+
+    &:disabled {
+      background-color: #e5ffff;
+      color: #bdbdbd;
+      cursor: not-allowed;
+    }
+  }
+}
