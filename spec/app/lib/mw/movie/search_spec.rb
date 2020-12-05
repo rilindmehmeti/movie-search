@@ -5,27 +5,19 @@ describe Mw::Movie::Search do
 
   describe ".initialize" do
     context "with all required params" do
-      it "doesn't throw error" do
-        expect { subject }.not_to raise_error
-      end
-    end
-
-    shared_examples "with errors" do
-      it "throws ArgumentError" do
-        expect { subject }.to raise_error(ArgumentError)
-      end
+      it_behaves_like "without initialization errors"
     end
 
     context "with extra params" do
       subject { described_class.new(search_term: search_term, other_param: "MyExtraParam") }
 
-      include_examples "with errors"
+      it_behaves_like "with initialization errors"
     end
 
     context "without params" do
       subject { described_class.new }
 
-      include_examples "with errors"
+      it_behaves_like "with initialization errors"
     end
   end
 

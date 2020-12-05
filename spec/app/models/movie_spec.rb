@@ -28,9 +28,7 @@ describe Movie do
     context "when not expected params are passed" do
       let(:params) { { my_title: title, year: year } }
 
-      it "throws ArgumentError" do
-        expect { subject }.to raise_error(ArgumentError)
-      end
+      it_behaves_like "with initialization errors"
     end
   end
 end

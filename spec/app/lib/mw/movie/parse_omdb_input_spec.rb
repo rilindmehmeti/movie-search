@@ -5,9 +5,7 @@ describe Mw::Movie::ParseOmdbInput do
 
   describe ".initialize" do
     context "with input" do
-      it "doesn't throw error" do
-        expect { subject }.not_to raise_error
-      end
+      it_behaves_like "without initialization errors"
 
       context "with nil input" do
         let(:input) { nil }
@@ -19,9 +17,7 @@ describe Mw::Movie::ParseOmdbInput do
 
     context "without input" do
       subject { described_class.new }
-      it "throws ArgumentError" do
-        expect { subject }.to raise_error(ArgumentError)
-      end
+      it_behaves_like "with initialization errors"
     end
   end
 

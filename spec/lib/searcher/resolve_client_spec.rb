@@ -1,28 +1,16 @@
 describe Searcher::ResolveClient do
   subject { described_class.new(adapter: nil) }
 
-  shared_examples "no errors" do
-    it "doesn't throw errors" do
-      expect { subject }.not_to raise_error
-    end
-  end
-
-  shared_examples "errors" do
-    it "doesn't throw errors" do
-      expect { subject }.to raise_error(ArgumentError)
-    end
-  end
-
   describe ".initialize" do
     context "without params" do
       subject { described_class.new }
-      include_examples "errors"
+      it_behaves_like "with initialization errors"
     end
 
     context "with adapter param" do
       context "with allowed adapter" do
         subject { described_class.new(adapter: :httparty) }
-        include_examples "no errors"
+        it_behaves_like "without initialization errors"
       end
 
       context "with un allowed adapter" do
@@ -35,9 +23,7 @@ describe Searcher::ResolveClient do
 
     context "with other params" do
       subject { described_class.new(param: :http) }
-      it "throws ArgumentError error" do
-        expect { subject }.to raise_error(ArgumentError)
-      end
+      it_behaves_like "with initialization errors"
     end
   end
 

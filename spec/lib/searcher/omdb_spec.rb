@@ -15,32 +15,20 @@ describe Searcher::Omdb do
   end
 
   describe ".initialize" do
-    shared_examples "initialization with errors" do
-      it "throws ArgumentError" do
-        expect { subject }.to raise_error(ArgumentError)
-      end
-    end
-
-    shared_examples "initialization without errors" do
-      it "doesn't throw error" do
-        expect { subject }.not_to raise_error
-      end
-    end
-
     context "without params" do
       let(:object) { described_class.new }
-      include_examples "initialization with errors"
+      it_behaves_like "with initialization errors"
     end
 
     context "with params" do
       context "with supported params" do
         let(:object) { described_class.new(search_term: "MyTerm") }
-        include_examples "initialization without errors"
+        it_behaves_like "without initialization errors"
       end
 
       context "with unsupported params" do
         let(:object) { described_class.new(my_param: "MyTerm") }
-        include_examples "initialization with errors"
+        it_behaves_like "with initialization errors"
       end
     end
   end
