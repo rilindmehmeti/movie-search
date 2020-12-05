@@ -6,7 +6,7 @@ The `api` searches in the external service, retrieves the information for movies
 
 The external service usage logic can be found under `lib/searcher`, where is implemented `OMBD` searcher, under `lib/searcher/error` are implemented errors related with searcher. The folder `lib/searcher/clients` holds implementation for clients that are used to handle http requests with the external service.
 
-The business logic for the application is placed under `app/lib`, where an middleware layer is used to interact with api endpoints and data.
+The business logic for the application is placed under `app/lib`, where an middleware layer is used to interact with api endpoints and data. For presenting the data presenters are being used, presenters can be found under `app/lib/presenters`.
 
 For unit tests `RSpec` is used, and respective tests can be found under `spec` folder. As well the projects implements `Rubocop` as linter. 
 
