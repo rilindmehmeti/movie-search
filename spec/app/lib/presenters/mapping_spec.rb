@@ -3,7 +3,8 @@ describe Presenters::Mapping do
     let(:presenters_mapping) do
       {
         Movie: {
-          default: "Presenters::Movie::Default"
+          default: "Presenters::Movie::Default",
+          static: "Presenters::Movie::StaticPoster"
         }
       }
     end
